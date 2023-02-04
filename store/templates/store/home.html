@@ -1,0 +1,50 @@
+{% load static %}
+<!-- <a href="{% url 'store' %}" class="store-link">Packages</a>
+<style>
+    .store-link {
+    color: black;
+    font-size: 50px;
+    position: absolute;
+    top: 650px;
+    left: 650px;
+    text-decoration: none;
+    font-style: italic;
+    }
+</style> -->
+
+<!-- <script>
+    $(document).click(function(){
+        window.location.href = "{% url 'store' %}";
+    });
+</script> -->
+<body onclick="location.href='/store/'">
+    <!-- Your content here -->
+  </body>
+  
+
+
+<!-- <div class="element" style="background-image: url('static/homepage.jpeg'); background-size: cover; background-repeat: no-repeat; background-position: center;"></div> -->
+<body style="background-image: url('static/images/homepage.png'); background-size: cover; background-repeat: no-repeat; background-position: center;"></body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- <script>
+    $(document).ready(function(){
+        $('body').click(function(){
+            $('body').slideUp();
+        });
+    });
+</script> -->
+
+<style>
+    body {
+        animation: slide-up 0.5s;
+    }
+    @keyframes slide-up {
+        from {
+            transform: translateY(0);
+        }
+        to {
+            transform: translateY(-100%);
+        }
+    }
+</style>

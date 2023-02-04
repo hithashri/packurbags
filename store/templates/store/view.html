@@ -1,0 +1,31 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<div class="box-element">
+    <a class="btn btn-outline-dark" href="{% url 'store' %}">&#x2190; Continue Shopping</a>
+    
+    <br>
+    <br>
+    
+    <h1>{{ package.name }}</h1>
+    
+    <img class="viewimage" src="{{package.imageURL}}" >
+    <p>{{package.info}}</p>
+    <style>
+        p {
+          font-size: 20px;
+          font-family: 'Arial';
+          font-style: italic;
+          margin: 10px;
+          padding: 10px;
+        }
+      </style>
+      <p>
+      
+    <h4>Package price: {{package.price|floatformat:2}} INR</h4>
+    <h4>Number of days: {{package.no_of_days}}</h4>
+    <h4>Places Included: {{package.places_included}}</h4>
+    <h4>{{quantity}}</h4>
+    
+</div>
+{% endblock content %}

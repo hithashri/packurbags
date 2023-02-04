@@ -1,0 +1,22 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+    <div class="row">
+        {% for package in packages %}
+        <div class ="col-lg-4">
+            <img class="thumbnail" src="{{package.imageURL}}">
+            <div class="box-element product">
+                <h6><strong>{{package.name}}</strong></h6>
+                <hr>
+                {% if user.is_authenticated%}
+                	<a data-package={{package.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart" href="{% url 'cart' %}">Add to Bag</a>
+                {% else %}
+                	<a data-package={{package.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart" href="{% url 'login' %}">Add to Bag</a>
+                {% endif %}
+                <a class="btn btn-outline-success" href="{% url 'view' packageId=package.id %}">View</a>
+                <h4 style="display: inline-block;float: right">{{package.price|floatformat:2}} INR</h4>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock content %}	

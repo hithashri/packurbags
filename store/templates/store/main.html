@@ -1,0 +1,98 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pack ur Bags</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script type="text/javascript">
+      var user = '{{request.user}}'
+  
+      function getToken(name) {
+          var cookieValue = null;
+          if (document.cookie && document.cookie !== '') {
+              var cookies = document.cookie.split(';');
+              for (var i = 0; i < cookies.length; i++) {
+                  var cookie = cookies[i].trim();
+                  // Does this cookie string begin with the name we want?
+                  if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                      cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                      break;
+                  }
+              }
+          }
+          return cookieValue;
+      }
+      var csrftoken = getToken('csrftoken')
+    
+    </script>
+  </head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black mb-5">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'home' %}">Pack ur Bags</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'store' %}">Packages</a>
+              </li>            
+            </ul>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{% url 'checkout' %}">Checkout</a>
+                </li>            
+              </ul>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{% url 'reachus' %}">Reach Us</a>
+                </li>            
+              </ul>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{% url 'aboutus' %}">About Us</a>
+                </li>            
+              </ul>
+            <div class="form-inline my-2 my-lg-0">
+              {% if user.is_authenticated %}
+              	<a href="/"class="btn btn-warning">{{user.username}}</a>
+              	<a href="/logout"class="btn btn-warning">Logout</a>
+            	{% else %}
+              	<a href="/login"class="btn btn-warning">Login</a>
+              	<a href="/register"class="btn btn-warning">Register</a>
+            	{% endif %}
+                   
+              <a href="{% url 'cart' %}">
+               <img  id="cart-icon" src="{% static 'images/bag.jpg' %}">
+              </a>
+              <p id="cart-total">{{cartItems}}</p>
+            </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    <div class="container">
+      	
+        	{% block content %}
+
+        	{% endblock content %}
+    </div>
+    <!-- <footer class="bg-dark text-center text-white">
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2023 Copyright
+      <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+      </div>
+    </footer> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+  </body>
+</html>
